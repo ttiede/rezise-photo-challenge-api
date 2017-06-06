@@ -134,10 +134,16 @@ development:
 test:
   clients:
     default:
-      database: rezise_photo_challenge_api
+      database: rezise_photo_challenge_api_test
       hosts:
         - localhost:27017
       options:
         read:
           mode: :primary
         max_pool_size: 1
+production:
+  clients:
+    default:
+      uri: <%= ENV['MONGODB_URI'] %>
+      options:
+        connection_timeout: 15
