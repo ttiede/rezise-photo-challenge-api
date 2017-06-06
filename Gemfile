@@ -19,6 +19,13 @@ gem 'puma', '~> 3.0'
 #Mongo Database 
 gem 'mongoid', '~> 6.0.0'
 
+# Image manipulation.
+gem 'mini_magick'
+
+# Http requests and stubs.
+gem 'typhoeus'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
