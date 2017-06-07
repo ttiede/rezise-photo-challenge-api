@@ -52,10 +52,6 @@ group :test do
 
   gem 'rspec_junit_formatter'
 
-  # for client integration
-  gem 'vcr', '~> 2.9'
-  gem 'webmock', '~> 1.17'
-
   gem 'codeclimate-test-reporter', require: false
   gem 'rack_session_access'
 
