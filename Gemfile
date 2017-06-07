@@ -28,8 +28,16 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'codacy-coverage', require: false
+  gem 'pry'
+  gem 'pry-nav'
+  gem 'pry-rails'
+  gem 'pry-stack_explorer'
   gem 'rspec-rails', '~> 3.5'
   gem 'simplecov'
+  gem 'database_cleaner', :git => 'https://github.com/DatabaseCleaner/database_cleaner.git'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'simplecov'
+
 end
 
 group :test do
@@ -37,6 +45,8 @@ group :test do
   gem 'factory_girl', '~> 4.0'
   gem 'json_spec'
   gem 'poltergeist', '~> 1.4'
+  gem 'rspec_junit_formatter'
+  gem 'shoulda-matchers'
   gem 'timecop', '~> 0.6'
   gem 'zonebie'
 
@@ -54,10 +64,6 @@ end
 group :development do
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'pry'
-  gem 'pry-nav'
-  gem 'pry-rails'
-  gem 'pry-stack_explorer'
   gem 'rubycritic', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'

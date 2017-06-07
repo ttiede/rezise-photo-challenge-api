@@ -11,7 +11,7 @@ class Image
   def self.create_from_urls(urls, host)
     urls.each do |url|
       file_name = url[/([^\/]+)\/?$/, 1]
-      
+
       image = build_image(file_name, url)  
     
       next if image.nil? 
@@ -23,7 +23,6 @@ class Image
   end
 
   def self.resizing(image, host)
-
     CONFIG['image_dimensions'].each do |size_name, dimensions|
       image_version = ImageVersion.create(
         image: image,
@@ -51,7 +50,6 @@ class Image
   protected
 
   def self.build_image(file_name, url)
-
     return nil if where(file_name: file_name).exists?
     
     unless where(file_name: file_name).exists?
