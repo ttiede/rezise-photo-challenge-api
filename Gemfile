@@ -35,6 +35,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'simplecov'
   gem 'database_cleaner', :git => 'https://github.com/DatabaseCleaner/database_cleaner.git'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'simplecov'
+
 end
 
 group :test do
@@ -47,6 +50,16 @@ group :test do
   gem 'timecop', '~> 0.6'
   gem 'zonebie'
 
+  gem 'rspec_junit_formatter'
+
+  # for client integration
+  gem 'vcr', '~> 2.9'
+  gem 'webmock', '~> 1.17'
+
+  gem 'codeclimate-test-reporter', require: false
+  gem 'rack_session_access'
+
+  gem 'shoulda-matchers'
 end
 group :development do
   gem 'listen', '~> 3.0.5'
