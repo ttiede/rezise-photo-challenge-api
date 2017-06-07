@@ -27,24 +27,24 @@ gem 'typhoeus'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'codacy-coverage', require: false
   gem 'rspec-rails', '~> 3.5'
-  gem "simplecov"
-  gem 'codacy-coverage', :require => false
+  gem 'simplecov'
 end
 
 group :test do
   gem 'capybara'
+  gem 'factory_girl', '~> 4.0'
+  gem 'json_spec'
   gem 'poltergeist', '~> 1.4'
   gem 'timecop', '~> 0.6'
-  gem 'json_spec'
-  gem 'factory_girl', '~> 4.0'
   gem 'zonebie'
 
   gem 'rspec_junit_formatter'
 
   # for client integration
-  gem 'webmock', '~> 1.17'
   gem 'vcr', '~> 2.9'
+  gem 'webmock', '~> 1.17'
 
   gem 'codeclimate-test-reporter', require: false
   gem 'rack_session_access'
@@ -61,7 +61,6 @@ group :development do
   gem 'rubycritic', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -2,6 +2,7 @@
 
 class ImagesController < ApplicationController
   def show
+    binding.pry
     render json: Image.all_json_formatted
   end
 
