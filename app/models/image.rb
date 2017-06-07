@@ -1,5 +1,5 @@
-#Class image of mongo
-#Methos to prepare JSON to returning
+# Class image of mongo
+# Methos to prepare JSON to returning
 class Image
   include Mongoid::Document
 
@@ -8,7 +8,8 @@ class Image
 
   embeds_many :image_versions
 
-  def self.create_from_urls(urls, host)
+  def self.create_from_urls(urls, _host)
+    binding.pry
     urls.each do |url|
       file_name = url[/([^\/]+)\/?$/, 1]
       next if where(file_name: file_name).exists?
@@ -16,25 +17,16 @@ class Image
         file_name: file_name,
         source: url
       )
-
-      CONFIG['image_dimensions'].each do |size_name, dimensions|
-        image_version = ImageVersion.create(
-          image: image,
-          alias: size_name,
-          path: Rails.root.join(CONFIG['images_folder'], "#{size_name}_#{file_name}").to_s,
-          url: "#{host}/#{CONFIG['images_folder']}/#{size_name}_#{file_name}"
-        )
-
-        ImageEdit.resize_from_url(url, dimensions['height'], dimensions['width'], image_version.path)
-      end
-
+      dimensioning_image_size(file_name, image)
       image.save
     end
+  rescue => e
+    puts e.to_s
   end
 
   def self.all_json_formatted
     result = {}
-    all.each do |image|
+    all.find_each do |image|
       result[image.file_name] = {}
       image.image_versions.each do |image_version|
         result[image.file_name][image_version.alias] = image_version.url
@@ -42,5 +34,20 @@ class Image
     end
 
     result.to_json
+  end
+
+  protected
+
+  def dimensioning_image_size(file_name, image)
+    CONFIG['image_dimensions'].each do |size_name, dimensions|
+      image_version = ImageVersion.create(
+        image: image,
+        alias: size_name,
+        path: Rails.root.join(CONFIG['images_folder'], "#{size_name}_#{file_name}").to_s,
+        url: "#{host}/#{CONFIG['images_folder']}/#{size_name}_#{file_name}"
+      )
+
+      ImageEdit.resize_from_url(url, dimensions['height'], dimensions['width'], image_version.path)
+    end
   end
 end
