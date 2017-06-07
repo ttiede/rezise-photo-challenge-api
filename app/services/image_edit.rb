@@ -1,6 +1,5 @@
 class ImageEdit
   def self.resize_from_url(url, height, width, save_path)
-    binding.pry
     image = MiniMagick::Image.open url
     image.resize "#{height}x#{width}"
     image.write(save_path)
