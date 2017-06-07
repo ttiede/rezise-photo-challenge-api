@@ -28,7 +28,7 @@ class Image
         image: image,
         alias: size_name,
         path: Rails.root.join(CONFIG['images_folder'], "#{size_name}_#{image.file_name}").to_s,
-        url: "#{host}/#{CONFIG['images_folder']}/#{size_name}_#{image.file_name}"
+        url: "#{host}/#{size_name}_#{image.file_name}"
       )
 
       ImageEdit.resize_from_url(image.source, dimensions['height'], dimensions['width'], image_version.path)
