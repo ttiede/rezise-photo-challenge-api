@@ -1,24 +1,11 @@
-# README
+Ruby 2.4
+Execute: 
+  bundle install
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+  rails s
 
-Things you may want to cover:
+Open the URL: localhost:PORT/images/populate
+This url populating databse and re-do all imagens.
+When you would like recovery the new images using the URL: localhost:PORT/images/show
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+PS: I thought of doing a task and run the server launch, it is not an era of focus
