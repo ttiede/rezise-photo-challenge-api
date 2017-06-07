@@ -2,25 +2,25 @@ require 'simplecov'
 require 'codacy-coverage'
 
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
-    SimpleCov::Formatter::HTMLFormatter,
-    Codacy::Formatter
-])
+#SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+#    SimpleCov::Formatter::HTMLFormatter,
+#    Codacy::Formatter
+#])
 
-SimpleCov.start do
-  add_filter '.gems'
-  add_filter 'pkg'
-  add_filter 'spec'
-  add_filter 'vendor'
-  add_filter '/test/'
-  add_filter '/config/'
-  add_filter '/vendor/'
+#SimpleCov.start do
+#  add_filter '.gems'
+#  add_filter 'pkg'
+#  add_filter 'spec'
+#  add_filter 'vendor'
+#  add_filter '/test/'
+#  add_filter '/config/'
+#  add_filter '/vendor/'
 
-  add_group 'Controllers', 'app/controllers'
-  add_group 'Models', 'app/models'
-  add_group 'Helpers', 'app/helpers'
-  add_group 'Mailers', 'app/mailers'
-end
+#  add_group 'Controllers', 'app/controllers'
+#  add_group 'Models', 'app/models'
+#  add_group 'Helpers', 'app/helpers'
+#  add_group 'Mailers', 'app/mailers'
+#end
 
 # This outputs the report to your public folder
 
