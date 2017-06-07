@@ -12,32 +12,32 @@ class Image
     urls.each do |url|
       file_name = url[/([^\/]+)\/?$/, 1]
 
-      next if where(file_name: file_name).exists?
+      image = build_image(file_name, url)  
+    
+      next if image.nil? 
 
-      image = create(
-        file_name: file_name,
-        source: url
-      )
-
-      CONFIG['image_dimensions'].each do |size_name, dimensions|
-        image_version = ImageVersion.create(
-          image: image,
-          alias: size_name,
-          path: Rails.root.join(CONFIG['images_folder'], "#{size_name}_#{file_name}").to_s,
-          url: "#{host}/#{CONFIG['images_folder']}/#{size_name}_#{file_name}"
-        )
-
-        ImageEdit.resize_from_url(url, dimensions['height'], dimensions['width'], image_version.path)
-      end
+      resizing(image, host)
 
       image.save
     end
   end
 
-  def self.all_json_formatted
-    result = {}
+  def self.resizing(image, host)
+    CONFIG['image_dimensions'].each do |size_name, dimensions|
+      image_version = ImageVersion.create(
+        image: image,
+        alias: size_name,
+        path: Rails.root.join(CONFIG['images_folder'], "#{size_name}_#{image.file_name}").to_s,
+        url: "#{host}/#{CONFIG['images_folder']}/#{size_name}_#{image.file_name}"
+      )
 
-    all.find_each do |image|
+      ImageEdit.resize_from_url(image.source, dimensions['height'], dimensions['width'], image_version.path)
+    end
+  end
+
+  def self.all_json_formatted
+    result = Hash.new
+    self.all.each do |image|
       result[image.file_name] = {}
       image.image_versions.each do |image_version|
         result[image.file_name][image_version.alias] = image_version.url
@@ -45,5 +45,18 @@ class Image
     end
 
     result.to_json
+  end
+  
+  protected
+
+  def self.build_image(file_name, url)
+    return nil if where(file_name: file_name).exists?
+    
+    unless where(file_name: file_name).exists?
+      return create(
+          file_name: file_name,
+          source: url
+        )
+    end
   end
 end

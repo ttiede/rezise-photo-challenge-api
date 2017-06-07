@@ -34,6 +34,7 @@ group :development, :test do
   gem 'pry-stack_explorer'
   gem 'rspec-rails', '~> 3.5'
   gem 'simplecov'
+  gem 'database_cleaner', :git => 'https://github.com/DatabaseCleaner/database_cleaner.git'
 end
 
 group :test do
@@ -45,6 +46,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'timecop', '~> 0.6'
   gem 'zonebie'
+
 end
 group :development do
   gem 'listen', '~> 3.0.5'

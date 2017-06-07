@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/DatabaseCleaner/database_cleaner.git
+  revision: 40e084e9a903fdae186ad4196bb5b306498a5096
+  specs:
+    database_cleaner (1.6.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -259,6 +265,7 @@ DEPENDENCIES
   byebug
   capybara
   codacy-coverage
+  database_cleaner!
   factory_girl (~> 4.0)
   json_spec
   listen (~> 3.0.5)
